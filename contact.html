@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RUSL EventOrbit – Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">🎓 EventOrbit</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="add-event.html">Add Event</a></li>
+                <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- header-->
+<div style="background: linear-gradient(135deg,#8B1A1A,#c0392b); color:white; padding:30px 0 22px;">
+    <div class="container">
+        <h2 class="fw-bold mb-1">Contact Us</h2>
+        <p class="mb-0 opacity-75">Get in touch with the EventOrbit team at RUSL</p>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5">
+    <div class="row g-4">
+
+        <!-- left-->
+        <div class="col-lg-5">
+
+            <!-- Email -->
+            <div class="contact-info-box">
+                <div class="ci-icon">📧</div>
+                <div>
+                    <strong>Email</strong>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">eventorbit@rusl.ac.lk</p>
+                </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="contact-info-box">
+                <div class="ci-icon">📞</div>
+                <div>
+                    <strong>Phone</strong>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">+94 25 226 5216</p>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">+94 77 123 4567</p>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="contact-info-box">
+                <div class="ci-icon">📍</div>
+                <div>
+                    <strong>Address</strong>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">
+                        Department of Computing<br>
+                        Faculty of Applied Sciences<br>
+                        Rajarata University of Sri Lanka<br>
+                        Mihintale, Sri Lanka
+                    </p>
+                </div>
+            </div>
+
+            <!-- Working Hours -->
+            <div class="contact-info-box">
+                <div class="ci-icon">🕐</div>
+                <div>
+                    <strong>Working Hours</strong>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">Mon – Fri: 8:30 AM – 4:30 PM</p>
+                    <p class="mb-0" style="font-size:0.9rem; color:#495057;">Saturday: 8:30 AM – 1:00 PM</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- right-->
+        <div class="col-lg-7">
+            <div class="contact-form-card">
+                <h4 class="fw-bold mb-1">Send Us a Message</h4>
+                <p class="text-muted mb-4" style="font-size:0.9rem;">We'll get back to you as soon as possible.</p>
+
+                <form id="contactForm" novalidate>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name <span style="color:#8B1A1A;">*</span></label>
+                            <input type="text" class="form-control" id="contactName" placeholder="Your full name" required>
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address <span style="color:#8B1A1A;">*</span></label>
+                            <input type="email" class="form-control" id="contactEmail" placeholder="yourname@email.com" required>
+                            <div class="invalid-feedback">Please enter a valid email.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Subject <span style="color:#8B1A1A;">*</span></label>
+                        <input type="text" class="form-control" id="contactSubject" placeholder="e.g. Event submission enquiry" required>
+                        <div class="invalid-feedback">Please enter a subject.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">Message <span style="color:#8B1A1A;">*</span></label>
+                        <textarea class="form-control" id="contactMessage" rows="5"
+                            placeholder="Type your message here..." required minlength="10"></textarea>
+                        <div class="invalid-feedback">Please enter a message (at least 10 characters).</div>
+                    </div>
+
+                    <button type="submit" class="btn btn-rusl px-5">Send Message</button>
+
+                    <div id="contactFormMessage" style="display:none; margin-top:15px;"></div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!--loc-->
+    <div class="map-container mt-5">
+        <iframe
+            src="https://maps.google.com/maps?q=Rajarata+University+of+Sri+Lanka+Mihintale&t=&z=14&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="350" style="border:0; display:block;"
+            allowfullscreen="" loading="lazy" title="RUSL Location">
+        </iframe>
+    </div>
+
+</div>
+
+
+<!--footer-->
+<footer>
+    <div class="container text-center">
+        <div class="footer-brand">🎓 EventOrbit</div>
+        <p class="small mb-3">Rajarata University of Sri Lanka – Department of Computing</p>
+        <hr>
+        <p class="small mb-2">
+            <a href="index.html">Home</a> &nbsp;|&nbsp;
+            <a href="events.html">Events</a> &nbsp;|&nbsp;
+            <a href="contact.html">Contact</a>
+        </p>
+             <p class="small mb-0">© 2026 RUSL EventOrbit | All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

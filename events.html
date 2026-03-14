@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RUSL EventOrbit – Events</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="index.html">🎓 EventOrbit</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="events.html">Events</a></li>
+                <li class="nav-item"><a class="nav-link" href="add-event.html">Add Event</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- header-->
+<div style="background: linear-gradient(135deg,#8B1A1A,#c0392b); color:white; padding:30px 0 22px;">
+    <div class="container">
+        <h2 class="fw-bold mb-1">University Events</h2>
+        <p class="mb-0 opacity-75">Browse all events happening at Rajarata University of Sri Lanka</p>
+    </div>
+</div>
+
+<!-- filter -->
+<div class="container mt-5">
+    <div class="filter-bar">
+        <div class="row g-2 align-items-end">
+            <div class="col-md-4">
+                <label class="form-label mb-1" style="font-size:0.82rem; font-weight:600;">Search Event</label>
+                <input type="text" id="searchInput" class="form-control" placeholder="🔍  Type event name...">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label mb-1" style="font-size:0.82rem; font-weight:600;">Category</label>
+                <select id="categoryFilter" class="form-select">
+                    <option value="all">All Categories</option>
+                    <option value="Academic">Academic</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Workshop">Workshop</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label mb-1" style="font-size:0.82rem; font-weight:600;">Faculty</label>
+                <select id="facultyFilter" class="form-select">
+                    <option value="all">All Faculties</option>
+                    <option value="FAS">Faculty of Applied Sciences</option>
+                    <option value="FOT">Faculty of Technology</option>
+                    <option value="MGT">Faculty of Management Studies</option>
+                    <option value="FSSH">Faculty of Social Sciences & Humanities</option>
+                    <option value="FOA">Faculty of Agriculture</option>
+                    <option value="FMAS">Faculty of Medicine & Allied Sciences</option>
+                    <option value="University">University Wide</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-rusl w-100 mt-3" id="filterBtn">Filter</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- events-->
+<div class="container mb-5">
+
+    <div id="noResults">
+        <img src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png" width="80" style="opacity:0.3;" alt="">
+        <p class="mt-3">No events found matching your search.</p>
+    </div>
+
+    <div class="row g-4" id="eventsContainer">
+
+        <!-- 1 EXTRU -->
+        <div class="col-md-3 col-sm-6 event-card" id="extru"
+             data-title="EXTRU"
+             data-category="Workshop"
+             data-faculty="FOT"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/Extru.jpg" class="card-img-top" alt="EXTRU">
+                <div class="card-body">
+                    <span class="badge-cat cat-Workshop">Workshop</span>
+                    <h6>EXTRU</h6>
+                    <small class="text-muted d-block">📅 June 5, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Faculty of Technology</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="EXTRU"
+                        data-img="images/Extru.jpg"
+                        data-date="June 5, 2026"
+                        data-location="Faculty of Technology"
+                        data-faculty="FOT"
+                        data-category="Workshop"
+                        data-access="Public"
+                        data-description="EXTRU is the annual technology exhibition organized by the Faculty of Technology, showcasing innovative student projects and research findings. Open to all visitors from inside and outside the university.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2 PADURA -->
+        <div class="col-md-3 col-sm-6 event-card" id="padura"
+             data-title="Padura"
+             data-category="Cultural"
+             data-faculty="FAS"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/paduru sajje.jpg" class="card-img-top" alt="Padura">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>Padura</h6>
+                    <small class="text-muted d-block">📅 May 10, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 FAS premises</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Padura"
+                        data-img="images/paduru sajje.jpg"
+                        data-date="May 10, 2026"
+                        data-location="FAS premises"
+                        data-faculty="FAS"
+                        data-category="Cultural"
+                        data-access="Public"
+                        data-description="Padura is a vibrant cultural music festival organized by the Faculty of Applied Sciences, celebrating the artistic talents of RUSL students. Open to all RUSL undergraduates.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 THAI PONGAL -->
+        <div class="col-md-3 col-sm-6 event-card" id="thai-pongal"
+             data-title="Thai Pongal"
+             data-category="Cultural"
+             data-faculty="University"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/pongal.jpg" class="card-img-top" alt="Thai Pongal">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>Thai Pongal</h6>
+                    <small class="text-muted d-block">📅 January 14, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 University Grounds</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Thai Pongal"
+                        data-img="images/pongal.jpg"
+                        data-date="January 14, 2026"
+                        data-location="University Grounds"
+                        data-faculty="University Wide"
+                        data-category="Cultural"
+                        data-access="Public"
+                        data-description="Thai Pongal is a traditional Hindu harvest festival celebrated university-wide by all faculties, promoting cultural diversity and unity among students.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4 FRESHERS MEET -->
+        <div class="col-md-3 col-sm-6 event-card" id="freshers-meet"
+             data-title="Freshers Meet"
+             data-category="Sports"
+             data-faculty="University"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/fre meet.jpg" class="card-img-top" alt="Freshers Meet">
+                <div class="card-body">
+                    <span class="badge-cat cat-Sports">Sports</span>
+                    <h6>Freshers Meet</h6>
+                    <small class="text-muted d-block">📅 March 15, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 University Grounds</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Freshers Meet"
+                        data-img="images/fre meet.jpg"
+                        data-date="March 15, 2026"
+                        data-location="University Grounds"
+                        data-faculty="University Wide"
+                        data-category="Sports"
+                        data-access="Private"
+                        data-description="Freshers Meet is the inter-faculty sports event exclusively for first-year students across all faculties, designed to build team spirit and campus community from day one.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5 UNDER THE MOON -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="Under The Moon"
+             data-category="Cultural"
+             data-faculty="FAS"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/Under The Moon.jpg" class="card-img-top" alt="Under The Moon">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>Under The Moon</h6>
+                    <small class="text-muted d-block">📅 September 8, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Auditorium, FAS</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Under The Moon"
+                        data-img="images/Under The Moon.jpg"
+                        data-date="September 8, 2026"
+                        data-location="Auditorium, FAS"
+                        data-faculty="FAS"
+                        data-category="Cultural"
+                        data-access="Public"
+                        data-description="Under The Moon is a night cultural event by the Faculty of Applied Sciences featuring live musical performances, poetry and art displays held under the open sky at RUSL.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6 OBT CAMPING -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="OBT Camping"
+             data-category="Workshop"
+             data-faculty="FAS"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/OBT camping.jpg" class="card-img-top" alt="OBT Camping">
+                <div class="card-body">
+                    <span class="badge-cat cat-Workshop">Workshop</span>
+                    <h6>OBT Camping</h6>
+                    <small class="text-muted d-block">📅 July 12, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Belihul Oya</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="OBT Camping"
+                        data-img="images/OBT camping.jpg"
+                        data-date="July 12, 2026"
+                        data-location="Belihul Oya"
+                        data-faculty="FAS"
+                        data-category="Workshop"
+                        data-access="Private"
+                        data-description="OBT Camping is an outdoor bonding and leadership workshop organised by FAS to strengthen teamwork and community spirit among selected RUSL students.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7 OPEN MIC -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="Open Mic Night"
+             data-category="Cultural"
+             data-faculty="FAS"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/Open Mic.jpg" class="card-img-top" alt="Open Mic Night">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>Open Mic Night</h6>
+                    <small class="text-muted d-block">📅 October 3, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 FAS Premises</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Open Mic Night"
+                        data-img="images/Open Mic.jpg"
+                        data-date="October 3, 2026"
+                        data-location="FAS Premises"
+                        data-faculty="FAS"
+                        data-category="Cultural"
+                        data-access="Public"
+                        data-description="Open Mic Night is a student-run cultural event by FAS where any RUSL student can perform stand-up comedy, singing, poetry and more in a relaxed and fun atmosphere.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8 SWIMMING MEET -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="Swimming Meet"
+             data-category="Sports"
+             data-faculty="University"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/swimming.jpg" class="card-img-top" alt="Swimming Meet">
+                <div class="card-body">
+                    <span class="badge-cat cat-Sports">Sports</span>
+                    <h6>Swimming Meet</h6>
+                    <small class="text-muted d-block">📅 August 5, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 University Swimming Pool</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Swimming Meet"
+                        data-img="images/swimming.jpg"
+                        data-date="August 5, 2026"
+                        data-location="University Swimming Pool"
+                        data-faculty="University Wide"
+                        data-category="Sports"
+                        data-access="Public"
+                        data-description="The Annual Swimming Meet is an inter-faculty swimming competition organised by the Sports Division of RUSL, open to any student who can swim regardless of faculty.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9 NEW YEAR CELEBRATION -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="New Year Celebration"
+             data-category="Cultural"
+             data-faculty="University"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/ny.jpg" class="card-img-top" alt="New Year Celebration">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>New Year Celebration</h6>
+                    <small class="text-muted d-block">📅 April 13, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 University Grounds</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="New Year Celebration"
+                        data-img="images/ny.jpg"
+                        data-date="April 13, 2026"
+                        data-location="University Grounds"
+                        data-faculty="University Wide"
+                        data-category="Cultural"
+                        data-access="Public"
+                        data-description="The Sinhala & Tamil New Year Celebration is a university-wide festive event full of traditional games, food, music and cultural activities enjoyed by the entire RUSL community.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10 AGRI FRESHERS NIGHT -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="Agri Freshers Night"
+             data-category="Cultural"
+             data-faculty="FOA"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/social night agri.jpg" class="card-img-top" alt="Agri Social Night">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>Agri Social Night</h6>
+                    <small class="text-muted d-block">📅 November 15, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Auditorium, Faculty of Agriculture</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Agri Freshers Night"
+                        data-img="images/social night agri.jpg"
+                        data-date="November 15, 2026"
+                        data-location="Auditorium,Faculty of Agriculture"
+                        data-faculty="FOA"
+                        data-category="Cultural"
+                        data-access="Private"
+                        data-description="Agri Freshers Night is the annual cultural evening organised by the Faculty of Agriculture, featuring live music, food and bonding activities exclusively for FOA freshers.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 11 MOU SIGNING -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="MOU Signing Ceremony"
+             data-category="Academic"
+             data-faculty="MGT"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/MOU.jpg" class="card-img-top" alt="MOU Signing">
+                <div class="card-body">
+                    <span class="badge-cat cat-Academic">Academic</span>
+                    <h6>MOU Signing Ceremony</h6>
+                    <small class="text-muted d-block">📅 February 20, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Senate Room</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="MOU Signing Ceremony"
+                        data-img="images/MOU.jpg"
+                        data-date="February 20, 2026"
+                        data-location="Senate Room, RUSL"
+                        data-faculty="MGT"
+                        data-category="Academic"
+                        data-access="Private"
+                        data-description="The MOU Signing Ceremony marks the formal academic partnership agreement organised by the Faculty of Management Studies, attended by 4th year MGT undergraduates.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 12 FAS EXPLORE -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="FAS Explore"
+             data-category="Workshop"
+             data-faculty="FAS"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/fasexplore.jpg" class="card-img-top" alt="FAS Explore">
+                <div class="card-body">
+                    <span class="badge-cat cat-Workshop">Workshop</span>
+                    <h6>FAS Explore</h6>
+                    <small class="text-muted d-block">📅 May 28, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Faculty of Applied Sciences</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="FAS Explore"
+                        data-img="images/fasexplore.jpg"
+                        data-date="May 28, 2026"
+                        data-location="Faculty of Applied Sciences"
+                        data-faculty="FAS"
+                        data-category="Workshop"
+                        data-access="Public"
+                        data-description="FAS Explore is an open workshop and exhibition day by the Faculty of Applied Sciences presenting lab demonstrations, research and student achievements. Open to all visitors.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 13 URSSH -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="URSSH Symposium"
+             data-category="Academic"
+             data-faculty="FSSH"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/URS.jpg" class="card-img-top" alt="URSSH Symposium">
+                <div class="card-body">
+                    <span class="badge-cat cat-Academic">Academic</span>
+                    <h6>URSSH</h6>
+                    <small class="text-muted d-block">📅 June 25, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 FSSH Auditorium</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="URSSH Symposium"
+                        data-img="images/URS.jpg"
+                        data-date="June 25, 2026"
+                        data-location="FSSH Auditorium"
+                        data-faculty="FSSH"
+                        data-category="Academic"
+                        data-access="Private"
+                        data-description="The Undergraduate Research Symposium in Social Sciences & Humanities (URSSH) is organised by FSSH where 4th year students present their social research findings to peers and faculty.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 14 FOT FRESHERS -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="FOT Freshers Night"
+             data-category="Cultural"
+             data-faculty="FOT"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/fot freshers.jpg" class="card-img-top" alt="FOT Freshers Night">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>FOT Freshers Night</h6>
+                    <small class="text-muted d-block">📅 March 22, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 FOT Auditorium</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="FOT Freshers Night"
+                        data-img="images/fot freshers.jpg"
+                        data-date="March 22, 2026"
+                        data-location="FOT Auditorium"
+                        data-faculty="FOT"
+                        data-category="Cultural"
+                        data-access="Private"
+                        data-description="FOT Freshers Night is the official cultural welcoming event for first-year students of the Faculty of Technology, featuring introductions, games and performances.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 15 MGT FRESHERS -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="MGT Freshers Night"
+             data-category="Cultural"
+             data-faculty="MGT"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/mgt freshers.jpg" class="card-img-top" alt="MGT Freshers Night">
+                <div class="card-body">
+                    <span class="badge-cat cat-Cultural">Cultural</span>
+                    <h6>MGT Freshers Night</h6>
+                    <small class="text-muted d-block">📅 March 28, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 MGT Auditorium</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="MGT Freshers Night"
+                        data-img="images/mgt freshers.jpg"
+                        data-date="March 28, 2026"
+                        data-location="MGT Auditorium"
+                        data-faculty="MGT"
+                        data-category="Cultural"
+                        data-access="Private"
+                        data-description="MGT Freshers Night is the cultural welcoming event for freshers of the Faculty of Management Studies, featuring music, skits and socialising.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 16 CHESS TOURNAMENT -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="Chess Tournament"
+             data-category="Sports"
+             data-faculty="University"
+             data-access="Public">
+            <div class="card h-100">
+                <img src="images/chess.jpg" class="card-img-top" alt="Chess Tournament">
+                <div class="card-body">
+                    <span class="badge-cat cat-Sports">Sports</span>
+                    <h6>Chess Tournament</h6>
+                    <small class="text-muted d-block">📅 September 20, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 University Indoor Stadium</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="Chess Tournament"
+                        data-img="images/chess.jpg"
+                        data-date="September 20, 2026"
+                        data-location="University Indoor Stadium"
+                        data-faculty="University Wide"
+                        data-category="Sports"
+                        data-access="Public"
+                        data-description="The RUSL Chess Tournament is an inter-faculty competition open to any chess player in the university, testing strategic thinking and competitive spirit across all faculties.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 17 USBus -->
+        <div class="col-md-3 col-sm-6 event-card"
+             data-title="USBus"
+             data-category="Academic"
+             data-faculty="FAS"
+             data-access="Private">
+            <div class="card h-100">
+                <img src="images/USBus.jpg" class="card-img-top" alt="USBus">
+                <div class="card-body">
+                    <span class="badge-cat cat-Academic">Academic</span>
+                    <h6>USBus</h6>
+                    <small class="text-muted d-block">📅 July 30, 2026</small>
+                    <small class="text-muted d-block mb-2">📍 Faculty of Applied Sciences</small>
+                    <button class="btn btn-rusl btn-sm w-100 viewBtn"
+                        data-title="USBus"
+                        data-img="images/USBus.jpg"
+                        data-date="July 30, 2026"
+                        data-location="Faculty of Applied Sciences"
+                        data-faculty="FAS"
+                        data-category="Academic"
+                        data-access="Private"
+                        data-description="USBus is an academic event organised by the Faculty of Applied Sciences exclusively for IT undergraduates, featuring industry talks, project showcases and networking opportunities.">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!--eve modal-->
+<div class="modal fade" id="eventModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImg" src="" class="modal-img w-100" alt="">
+                <p id="modalDescription" class="text-muted mb-3"></p>
+                <table class="table table-sm table-bordered">
+                    <tr><th style="width:110px;">📅 Date</th><td id="modalDate"></td></tr>
+                    <tr><th>📍 Location</th><td id="modalLocation"></td></tr>
+                    <tr><th>🏛️ Faculty</th><td id="modalFaculty"></td></tr>
+                    <tr><th>🏷️ Category</th><td id="modalCategory"></td></tr>
+                    <tr><th>🎟️ Access</th><td id="modalAccess"></td></tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<footer>
+    <div class="container text-center">
+        <div class="footer-brand">🎓 EventOrbit</div>
+        <p class="small mb-3">Rajarata University of Sri Lanka – Department of Computing</p>
+        <hr>
+        <p class="small mb-2">
+            <a href="index.html">Home</a> &nbsp;|&nbsp;
+            <a href="events.html">Events</a> &nbsp;|&nbsp;
+            <a href="contact.html">Contact</a>
+        </p>
+        <p class="small mb-0">© 2026 RUSL EventOrbit | All Rights Reserved</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
