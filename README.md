@@ -1,8 +1,10 @@
-# rusl-eventorbit
-COM2303 Web Design Project
+# RUSL EventOrbit - University Event Guide
+COM2303 Web Design | Mini Project - Phase 02
 
 Name: D.T.S. Weththasinghe 
+
 Index No: 6222
+
 Reg No: ASP/2023/002
 
 ## about
