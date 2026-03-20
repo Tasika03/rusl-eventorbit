@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    //1. EVENTS PAGE – Modal popup for event details
-    const viewBtns = document.querySelectorAll('.viewBtn');
-
+    // 1. EVENTS PAGE – Modal popup
+    var viewBtns = document.querySelectorAll('.viewBtn');
     viewBtns.forEach(function (btn) {
         btn.addEventListener('click', function () {
             document.getElementById('modalTitle').textContent       = btn.dataset.title;
@@ -14,45 +13,42 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('modalImg').src                 = btn.dataset.img;
             document.getElementById('modalImg').alt                 = btn.dataset.title;
 
-            //  Public/Private badge
-            var accessEl = document.getElementById('modalAccess');
+            var accessEl  = document.getElementById('modalAccess');
             var accessVal = btn.dataset.access;
-            if (accessVal === 'Public') {
-                accessEl.innerHTML = '<span style="background:#198754;color:#fff;padding:3px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">🌐 Public</span>';
-            } else {
-                accessEl.innerHTML = '<span style="background:#6c757d;color:#fff;padding:3px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">🔒 Private</span>';
+            if (accessEl) {
+                if (accessVal === 'Public') {
+                    accessEl.innerHTML = '<span style="background:#198754;color:#fff;padding:3px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">🌐 Public</span>';
+                } else {
+                    accessEl.innerHTML = '<span style="background:#6c757d;color:#fff;padding:3px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">🔒 Private</span>';
+                }
             }
-
-            // Show Bootstrap modal
             var modal = new bootstrap.Modal(document.getElementById('eventModal'));
             modal.show();
         });
     });
 
-
-    // 2. EVENTS PAGE – Search & Filter functionality
-    const searchInput    = document.getElementById('searchInput');
-    const categoryFilter = document.getElementById('categoryFilter');
-    const facultyFilter  = document.getElementById('facultyFilter');
-    const filterBtn      = document.getElementById('filterBtn');
-    const noResults      = document.getElementById('noResults');
+    // 2. EVENTS PAGE – Search & Filter
+    var searchInput    = document.getElementById('searchInput');
+    var categoryFilter = document.getElementById('categoryFilter');
+    var facultyFilter  = document.getElementById('facultyFilter');
+    var filterBtn      = document.getElementById('filterBtn');
+    var noResults      = document.getElementById('noResults');
 
     function filterEvents() {
-        const searchVal   = searchInput   ? searchInput.value.toLowerCase().trim() : '';
-        const categoryVal = categoryFilter ? categoryFilter.value : 'all';
-        const facultyVal  = facultyFilter  ? facultyFilter.value  : 'all';
-
-        const cards = document.querySelectorAll('.event-card');
-        let visibleCount = 0;
+        var searchVal   = searchInput   ? searchInput.value.toLowerCase().trim() : '';
+        var categoryVal = categoryFilter ? categoryFilter.value : 'all';
+        var facultyVal  = facultyFilter  ? facultyFilter.value  : 'all';
+        var cards       = document.querySelectorAll('.event-card');
+        var visibleCount = 0;
 
         cards.forEach(function (card) {
-            const title    = card.dataset.title.toLowerCase();
-            const category = card.dataset.category;
-            const faculty  = card.dataset.faculty;
+            var title    = card.dataset.title.toLowerCase();
+            var category = card.dataset.category;
+            var faculty  = card.dataset.faculty;
 
-            const matchSearch   = title.includes(searchVal);
-            const matchCategory = (categoryVal === 'all') || (category === categoryVal);
-            const matchFaculty  = (facultyVal  === 'all') || (faculty  === facultyVal);
+            var matchSearch   = title.includes(searchVal);
+            var matchCategory = (categoryVal === 'all') || (category === categoryVal);
+            var matchFaculty  = (facultyVal  === 'all') || (faculty  === facultyVal);
 
             if (matchSearch && matchCategory && matchFaculty) {
                 card.style.display = '';
@@ -72,159 +68,137 @@ document.addEventListener('DOMContentLoaded', function () {
     if (categoryFilter) categoryFilter.addEventListener('change', filterEvents);
     if (facultyFilter)  facultyFilter.addEventListener('change', filterEvents);
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlCategory = urlParams.get('category');
+    var urlParams   = new URLSearchParams(window.location.search);
+    var urlCategory = urlParams.get('category');
     if (urlCategory && categoryFilter) {
         categoryFilter.value = urlCategory;
         filterEvents();
     }
 
-    // Auto-open modal 
-    const urlHash = window.location.hash.replace('#', '');
+    // Auto-open modal from URL hash
+    var urlHash = window.location.hash.replace('#', '');
     if (urlHash) {
         var targetCard = document.getElementById(urlHash);
         if (targetCard) {
-            
             setTimeout(function () {
                 targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                var btn = targetCard.querySelector('.viewBtn');
-                if (btn) btn.click();
+                var hashBtn = targetCard.querySelector('.viewBtn');
+                if (hashBtn) hashBtn.click();
             }, 400);
         }
     }
 
-
-    // 3. ADD EVENT PAGE – Form validation & submission
-    const eventForm   = document.getElementById('eventForm');
-    const formMessage = document.getElementById('formMessage');
-    const descArea    = document.getElementById('eventDescription');
-    const charCount   = document.getElementById('charCount');
+    // 3. ADD EVENT PAGE – character counter and image preview only
+    // NO e.preventDefault — form submits normally to add-event-handler.php
+    var descArea  = document.getElementById('eventDescription');
+    var charCount = document.getElementById('charCount');
 
     if (descArea && charCount) {
         descArea.addEventListener('input', function () {
-            const len = descArea.value.length;
+            var len = descArea.value.length;
             charCount.textContent = len;
             if (len > 500) {
-                descArea.value = descArea.value.substring(0, 500);
+                descArea.value        = descArea.value.substring(0, 500);
                 charCount.textContent = 500;
             }
         });
     }
 
-    // Image preview
-    const imageInput   = document.getElementById('eventImage');
-    const imagePreview = document.getElementById('imagePreview');
-    const previewWrap  = document.getElementById('imagePreviewWrapper');
+    var imageInput   = document.getElementById('eventImage');
+    var imagePreview = document.getElementById('imagePreview');
+    var previewWrap  = document.getElementById('imagePreviewWrapper');
 
     if (imageInput) {
         imageInput.addEventListener('change', function () {
-            const file = imageInput.files[0];
+            var file = imageInput.files[0];
             if (file) {
-                // Validate file size (max 5MB)
                 if (file.size > 5 * 1024 * 1024) {
                     alert('Image file is too large. Maximum size is 5MB.');
                     imageInput.value = '';
-                    previewWrap.style.display = 'none';
+                    if (previewWrap) previewWrap.style.display = 'none';
                     return;
                 }
-                const reader = new FileReader();
+                var reader    = new FileReader();
                 reader.onload = function (e) {
-                    imagePreview.src = e.target.result;
-                    previewWrap.style.display = 'block';
+                    if (imagePreview) imagePreview.src          = e.target.result;
+                    if (previewWrap)  previewWrap.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             } else {
-                previewWrap.style.display = 'none';
+                if (previewWrap) previewWrap.style.display = 'none';
             }
         });
     }
 
-    // Form submit validation
-    if (eventForm) {
-        eventForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Check access type radio manually
-            const accessType = document.querySelector('input[name="accessType"]:checked');
-            const accessError = document.getElementById('accessTypeError');
-            if (!accessType) {
-                if (accessError) {
-                    accessError.textContent = 'Please select an access type.';
-                    accessError.style.display = 'block';
-                }
-                eventForm.classList.add('was-validated');
-                return;
-            } else {
-                if (accessError) {
-                    accessError.style.display = 'none';
-                    accessError.textContent = '';
-                }
-            }
-
-            if (!eventForm.checkValidity()) {
-                eventForm.classList.add('was-validated');
-                return;
-            }
-
-            // All valid — show success message
-            formMessage.style.display = 'block';
-            formMessage.innerHTML =
-                '<div class="alert alert-success">' +
-                '✅ <strong>Event submitted successfully!</strong> ' +
-                'Your event "' + document.getElementById('eventName').value + '" has been received.' +
-                '</div>';
-
-            // Reset form
-            eventForm.reset();
-            eventForm.classList.remove('was-validated');
-            if (accessError) { accessError.style.display = 'none'; accessError.textContent = ''; }
-            if (charCount)   charCount.textContent = '0';
+    var resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            if (charCount)   charCount.textContent    = '0';
             if (previewWrap) previewWrap.style.display = 'none';
-
-            formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
+    }
 
-        // Clear button also resets validation state
-        const resetBtn = document.getElementById('resetBtn');
-        if (resetBtn) {
-            resetBtn.addEventListener('click', function () {
-                eventForm.classList.remove('was-validated');
-                const accessError = document.getElementById('accessTypeError');
-                if (formMessage) { formMessage.style.display = 'none'; formMessage.innerHTML = ''; }
-                if (accessError) { accessError.style.display = 'none'; accessError.textContent = ''; }
-                if (charCount)   charCount.textContent = '0';
-                if (previewWrap) previewWrap.style.display = 'none';
-            });
+    // 4. AUTH NAVBAR – cookie based login/logout display
+    function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        return match ? decodeURIComponent(match[2]) : null;
+    }
+
+    var eoUser       = getCookie('eo_user');
+    var navLogin     = document.getElementById('nav-login');
+    var navRegister  = document.getElementById('nav-register');
+    var navDashboard = document.getElementById('nav-dashboard');
+    var navLogout    = document.getElementById('nav-logout');
+    var navUsername  = document.getElementById('nav-username');
+
+    if (eoUser) {
+        if (navLogin)     navLogin.style.display     = 'none';
+        if (navRegister)  navRegister.style.display  = 'none';
+        if (navDashboard) navDashboard.style.display = '';
+        if (navLogout)    navLogout.style.display    = '';
+        if (navUsername)  navUsername.textContent    = eoUser;
+    } else {
+        if (navLogin)     navLogin.style.display     = '';
+        if (navRegister)  navRegister.style.display  = '';
+        if (navDashboard) navDashboard.style.display = 'none';
+        if (navLogout)    navLogout.style.display    = 'none';
+    }
+
+    // 5. SHOW PHP HANDLER MESSAGES via URL params
+    var params  = new URLSearchParams(window.location.search);
+    var status  = params.get('status');
+    var msg     = params.get('msg');
+    var evtName = params.get('name');
+
+    var contactMsg = document.getElementById('contactFormMessage');
+    if (contactMsg) {
+        if (status === 'success') {
+            contactMsg.style.display = 'block';
+            contactMsg.innerHTML = '<div class="alert alert-success">✅ Your message has been sent successfully!</div>';
+        } else if (status === 'error' && msg) {
+            var errItems = decodeURIComponent(msg).split('|').map(function(e){ return '<li>'+e+'</li>'; }).join('');
+            contactMsg.style.display = 'block';
+            contactMsg.innerHTML = '<div class="alert alert-danger"><ul class="mb-0">'+errItems+'</ul></div>';
         }
     }
 
+        var formMsg = document.getElementById('formMessage');
+        var topMsg  = document.getElementById('topMessage');
 
-    //  4. CONTACT PAGE – Contact form validation
-    const contactForm    = document.getElementById('contactForm');
-    const contactMessage = document.getElementById('contactFormMessage');
+        if (status === 'success' && evtName) {
+            var successHtml = '<div class="alert alert-success mt-2">✅ Event "<strong>' + decodeURIComponent(evtName) + '</strong>" submitted successfully! It will appear on the events page after review.</div>';
+            if (topMsg)  topMsg.innerHTML = successHtml;
+            if (formMsg) { formMsg.style.display = 'block'; formMsg.innerHTML = successHtml; }
+            // Scroll to top message
+            if (topMsg) window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            if (!contactForm.checkValidity()) {
-                contactForm.classList.add('was-validated');
-                return;
-            }
-
-            const name = document.getElementById('contactName').value;
-
-            contactMessage.style.display = 'block';
-            contactMessage.innerHTML =
-                '<div class="alert alert-success">' +
-                '✅ Thank you, <strong>' + name + '</strong>! Your message has been sent. ' +
-                'We will get back to you shortly.' +
-                '</div>';
-
-            contactForm.reset();
-            contactForm.classList.remove('was-validated');
-            contactMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        });
-    }
-
+        } else if (status === 'error' && msg) {
+            var errItems2 = decodeURIComponent(msg).split('|').map(function(e) {
+                return '<li>' + e + '</li>';
+            }).join('');
+            var errorHtml = '<div class="alert alert-danger mt-2"><ul class="mb-0">' + errItems2 + '</ul></div>';
+            if (topMsg)  topMsg.innerHTML = errorHtml;
+            if (formMsg) { formMsg.style.display = 'block'; formMsg.innerHTML = errorHtml; }
+            if (topMsg) window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 });

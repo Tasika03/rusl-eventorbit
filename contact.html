@@ -9,6 +9,19 @@
 </head>
 <body>
 
+    <!-- Auth gate — redirect to login if not logged in -->
+    <script>
+    (function() {
+        function getCookie(name) {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? decodeURIComponent(match[2]) : null;
+        }
+        if (!getCookie('eo_user')) {
+            window.location.href = 'auth/login.php?msg=login_required';
+        }
+    })();
+    </script>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="index.html">🎓 EventOrbit</a>
@@ -21,6 +34,11 @@
                 <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
                 <li class="nav-item"><a class="nav-link" href="add-event.html">Add Event</a></li>
                 <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+                <li class="nav-item" id="nav-login"><a class="nav-link" href="auth/login.php">Login</a></li>
+                <li class="nav-item" id="nav-register"><a class="nav-link" href="auth/register.php">Register</a></li>
+                <li class="nav-item" id="nav-dashboard" style="display:none"><a class="nav-link" href="dashboard.php">Dashboard</a></li>
+                <li class="nav-item" id="nav-logout" style="display:none"><a class="nav-link" href="auth/logout.php">Logout (<span id="nav-username"></span>)</a></li>
+
             </ul>
         </div>
     </div>
@@ -91,30 +109,30 @@
                 <h4 class="fw-bold mb-1">Send Us a Message</h4>
                 <p class="text-muted mb-4" style="font-size:0.9rem;">We'll get back to you as soon as possible.</p>
 
-                <form id="contactForm" novalidate>
+                <form id="contactForm" method="POST" action="contact-handler.php" novalidate>
 
                     <div class="row g-3 mb-3">
                         <div class="col-md-6">
                             <label class="form-label">Full Name <span style="color:#8B1A1A;">*</span></label>
-                            <input type="text" class="form-control" id="contactName" placeholder="Your full name" required>
+                            <input type="text" class="form-control" id="contactName" name="name" placeholder="Your full name" required>
                             <div class="invalid-feedback">Please enter your name.</div>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Email Address <span style="color:#8B1A1A;">*</span></label>
-                            <input type="email" class="form-control" id="contactEmail" placeholder="yourname@email.com" required>
+                            <input type="email" class="form-control" id="contactEmail" name="email" placeholder="yourname@email.com" required>
                             <div class="invalid-feedback">Please enter a valid email.</div>
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Subject <span style="color:#8B1A1A;">*</span></label>
-                        <input type="text" class="form-control" id="contactSubject" placeholder="e.g. Event submission enquiry" required>
+                        <input type="text" class="form-control" id="contactSubject" name="subject" placeholder="e.g. Event submission enquiry" required>
                         <div class="invalid-feedback">Please enter a subject.</div>
                     </div>
 
                     <div class="mb-4">
                         <label class="form-label">Message <span style="color:#8B1A1A;">*</span></label>
-                        <textarea class="form-control" id="contactMessage" rows="5"
+                        <textarea class="form-control" id="contactMessage" name="message" rows="5"
                             placeholder="Type your message here..." required minlength="10"></textarea>
                         <div class="invalid-feedback">Please enter a message (at least 10 characters).</div>
                     </div>
